@@ -2,7 +2,7 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw 
 
-from random import randrange
+import random
 import os
 
 import uuid
@@ -15,7 +15,7 @@ message = ['Умные мысли часто приследуют его <но �
 'Окурок блять<есть 2 рубля', 'Именно он', 'А нахуя?', 'Твой потолок<это чей то пол', 'Вирус XXI Века', 'Его идеи<будут актуальны всегда',
 'Его идеи<полная хуйня', 'Пидорасы, что с них взять...<ну просто долбоёбы', 'Подрочил бы ему?', 'Может хватит?', 'Индус-триальные решения',
 'А сейчас молодой джедай<ты умрешь.', 'Заголовок<текст', 'Шах и Мат', 'Шах и Мат аутисты<ой то есть аметисты', 'Центр Туризма', 'Теперь понятно стало',
-
+'Игра <изменившая жизнь', 'Алё <ну чё там с деньгами',
 ] # цитаты !!!Важно!!! если вы ставите < то появляется саб строка
 
 
@@ -31,22 +31,21 @@ def concatinate(b):
     im2 = im2.resize((width, height)) #Меняем размеры
     im1.paste(im2, (23, 23)) #Вставляем картинку
     draw = ImageDraw.Draw(im1) # Пишем
-    msg = message[randrange(0, len(message))] # Рандомное сообщение
-     
-    msg1 = msg # Сообщение выбранное
+    msg = random.choice(message) # Рандомное сообщение
 
-    tag_open = msg1.find('<') # ищем скобку
+
+    tag_open = msg.find('<') # ищем скобку
 
     if tag_open > 0: # Если < есть, то создаем текст для суб строки
-        msg1_main, msg1_sub = msg1.split('<') # Превращаем в 2 массива Главного и Вторичного текста
-        w, h = font1.getsize(msg1_main)
-        sub_w, sub_h = font2.getsize(msg1_sub)
-        draw.text((((demotivator_width-w)/2), 490), msg1_main, fill=color, font=font1) #Пишем на центре Главный текст (width-w)/2, (490)/1
-        draw.text(((demotivator_width-sub_w)/2, 525), msg1_sub, fill=color, font=font2) #Пишем на центре Вторичный текст (width-w)/2, (490)/1
+        msg_main, msg_sub = msg.split('<') # Превращаем в 2 массива Главного и Вторичного текста
+        w, h = font1.getsize(msg_main)
+        sub_w, sub_h = font2.getsize(msg_sub)
+        draw.text((((demotivator_width-w)/2), 490), msg_main, fill=color, font=font1) #Пишем на центре Главный текст (width-w)/2, (490)/1
+        draw.text(((demotivator_width-sub_w)/2, 525), msg_sub, fill=color, font=font2) #Пишем на центре Вторичный текст (width-w)/2, (490)/1
     else:
-        msg1_main = msg1
-        w, h = font1.getsize(msg1_main)
-        draw.text((((demotivator_width-w)/2), 490), msg1_main, fill=color, font=font1) #Пишем на центре Главный текст (width-w)/2, (490)/1
+        msg_main = msg
+        w, h = font1.getsize(msg_main)
+        draw.text((((demotivator_width-w)/2), 490), msg_main, fill=color, font=font1) #Пишем на центре Главный текст (width-w)/2, (490)/1
     im1.save('demotivators/dem' + unique_filename +'.png')
     
 
@@ -60,22 +59,19 @@ def concatinate_plus(b, im1, im2):
     im2 = im2.resize((width, height)) #Меняем размеры
     im1.paste(im2, (23, 23)) #Вставляем картинку
     draw = ImageDraw.Draw(im1) # Пишем
-    msg = message[randrange(0, len(message))] # Рандомное сообщение
-     
-    msg1 = msg # Сообщение выбранное
-
-    tag_open = msg1.find('<') # ищем скобку
+    msg = random.choice(message) # Рандомное сообщение
+    tag_open = msg.find('<') # ищем скобку
 
     if tag_open > 0: # Если < есть, то создаем текст для суб строки
-        msg1_main, msg1_sub = msg1.split('<') # Превращаем в 2 массива Главного и Вторичного текста
-        w, h = font1.getsize(msg1_main)
-        sub_w, sub_h = font2.getsize(msg1_sub)
-        draw.text((((demotivator_width-w)/2), 490), msg1_main, fill=color, font=font1) #Пишем на центре Главный текст (width-w)/2, (490)/1
-        draw.text(((demotivator_width-sub_w)/2, 525), msg1_sub, fill=color, font=font2) #Пишем на центре Вторичный текст (width-w)/2, (490)/1
+        msg_main, msg_sub = msg.split('<') # Превращаем в 2 массива Главного и Вторичного текста
+        w, h = font1.getsize(msg_main)
+        sub_w, sub_h = font2.getsize(msg_sub)
+        draw.text((((demotivator_width-w)/2), 490), msg_main, fill=color, font=font1) #Пишем на центре Главный текст (width-w)/2, (490)/1
+        draw.text(((demotivator_width-sub_w)/2, 525), msg_sub, fill=color, font=font2) #Пишем на центре Вторичный текст (width-w)/2, (490)/1
     else:
-        msg1_main = msg1
-        w, h = font1.getsize(msg1_main)
-        draw.text((((demotivator_width-w)/2), 490), msg1_main, fill=color, font=font1) #Пишем на центре Главный текст (width-w)/2, (490)/1
+        msg_main = msg
+        w, h = font1.getsize(msg_main)
+        draw.text((((demotivator_width-w)/2), 490), msg_main, fill=color, font=font1) #Пишем на центре Главный текст (width-w)/2, (490)/1
     im1.save('demotivators/dem' + str(b) +'.png')    
     
 
